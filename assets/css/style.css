@@ -1,0 +1,12 @@
+body {
+    background-image: url("../images/background.png");
+    font-family: 'VT323', monospace;
+    color: #FFFFFF;
+}
+
+
+
+#your-character {
+    height: 150px;
+    width: 200px;
+}

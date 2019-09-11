@@ -1,0 +1,50 @@
+Game starts with four characters displayed at the top of the page.
+Their health is displayed below a picture of the characters
+    each character has characteristics:
+        - base Attack
+        - Health Points
+        - Current Attack Power
+        - Counter Attack Power
+'Your character' is displayed below the choices
+'Enemies Available To Attack' is below a blank space where the enemies will go.
+'Fight section' 
+'Attack' button
+'Defender'
+
+when a user clicks a character, that character moves under the 'Your character' heading
+
+The other characters turn red and move under 'Enemies Available to Attack'
+
+Clicking an enemy moves them below the 'Defender' heading and turns the card black
+
+When the user clicks the attack button:
+    - If no enemy has been selected, display 'No enemy is here.'
+    - Info is displayed below the enemy:
+        - 'You attacked Darth Maul for ${obiWan.currentAttackPower} damage.' - The attack notification.
+        - 'Darth Maul attacked you back for ${darthMaul.counterAttackPower} damage' - The coutner attack notification.
+    - Your character's health is decreased by enemy.counterAttackPower amount.
+    - The enemy's health is decreased by yourCharacter.currentAttackPower amount.
+
+When the user clicks the attack button again:
+    - yourCharacter.currentAttackPower is increased by yourCharacter.baseAttackPower
+
+If the user's character's health reaches 0:
+    - Display 'You have been defeated....GAME OVER' below the enemy character.
+    - display a restart button which resets:
+        - The whole game, characters to top of screen, all variables back to base values.
+
+If the enemy's health reaches 0:
+    - clear the enemy's card from the screen.
+    - display 'You have defeated ${enemyCharacter.name}, you can choose to fight another enemy'.
+
+The user chooses another enemy.
+    - yourCharacter.currentAttackPower is maintained from the previous battle.
+
+
+
+
+-----Ideas------
+
+- Could have levels
+    - After you beat the first round of characters, your health resets and new enemies pop up. 
+        - Such as Darth Vader and the Emporor
