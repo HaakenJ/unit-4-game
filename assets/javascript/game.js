@@ -31,39 +31,35 @@ let darthMaul = {
     counterAttackPower: 25,
 }
 
-let obiWanCard = $("<div>").css({
-    'border': '4px solid green',
-    'height': '150px',
-    'width': '200px',
-    'background-color': '#FFFFFF'
-    }).append("<img src='assets/images/obiWan.png' height='80%' width='80%'>")
-    .css({'text-align': 'center', 'padding': '20px 0 0'});
-let lukeCard = $("<div>").css({
-    'border': '4px solid green',
-    'height': '150px',
-    'width': '200px',
-    'background-color': '#FFFFFF'
-    }).append("<img src='assets/images/lukeSkywalker.png' height='80%' width='80%'>")
-    .css({'text-align': 'center', 'padding': '20px 0 0'});
-let sidiousCard = $("<div>").css({
-    'border': '4px solid green',
-    'height': '150px',
-    'width': '200px',
-    'background-color': '#FFFFFF'
-    }).append("<img src='assets/images/darthSidious.png' height='80%' width='80%'>")
-    .css({'text-align': 'center', 'padding': '20px 0 0'});
-let maulCard = $("<div>").css({
-    'border': '4px solid green',
-    'height': '150px',
-    'width': '200px',
-    'background-color': '#FFFFFF'
-    }).append("<img src='assets/images/darthMaul.png' height='80%' width='80%'>")
-    .css({'text-align': 'center', 'padding': '20px 0 0'});
+
 
 
 $(document).ready(function () {
-    $("#obi-wan").append(obiWanCard);
-    $("#luke-skywalker").append(lukeCard);
-    $("#darth-sidious").append(sidiousCard);
-    $("#darth-maul").append(maulCard);
+    let characterChosen = 0,
+        enemyChosen = 0;
+    $("#obi-health").append(obiWan.healthPoints);
+    $("#luke-health").append(lukeSkywalker.healthPoints);
+    $("#sidious-health").append(darthSidious.healthPoints);
+    $("#maul-health").append(darthMaul.healthPoints);
+
+    $(".character-cards").on("click", function () {
+        if (characterChosen === 0) {
+            $(this).appendTo($("#your-character"))
+            $(".character-cards").not(this).each(function () {
+                $(this).appendTo($("#enemies"));
+                $(this).css({"float": "left", "background-color": "red", "border-color": "black"});
+                $(this).addClass("enemy");
+            characterChosen = 1;
+            })
+        }
+        if (enemyChosen === 0) {
+            $(".enemy").on("click", function () {
+                $(this).appendTo($("#current-fighter"));
+                $(this).css({"background-color": "black", "border-color": "green", "color": "white"})
+                enemyChosen = 1;
+            });
+        }
+    });
+
+
 })
