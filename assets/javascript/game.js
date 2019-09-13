@@ -36,25 +36,29 @@ let obiWanCard = $("<div>").css({
     'height': '150px',
     'width': '200px',
     'background-color': '#FFFFFF'
-    }).append("<img src='../images/obiWan.png>");
+    }).append("<img src='assets/images/obiWan.png' height='80%' width='80%'>")
+    .css({'text-align': 'center', 'padding': '20px 0 0'});
 let lukeCard = $("<div>").css({
     'border': '4px solid green',
     'height': '150px',
     'width': '200px',
     'background-color': '#FFFFFF'
-    }).append("<img src='../images/lukeSkywalker.png>");
+    }).append("<img src='assets/images/lukeSkywalker.png' height='80%' width='80%'>")
+    .css({'text-align': 'center', 'padding': '20px 0 0'});
 let sidiousCard = $("<div>").css({
     'border': '4px solid green',
     'height': '150px',
     'width': '200px',
     'background-color': '#FFFFFF'
-    }).append("<img src='../images/darthSidious.png>");
+    }).append("<img src='assets/images/darthSidious.png' height='80%' width='80%'>")
+    .css({'text-align': 'center', 'padding': '20px 0 0'});
 let maulCard = $("<div>").css({
     'border': '4px solid green',
     'height': '150px',
     'width': '200px',
     'background-color': '#FFFFFF'
-    }).append("<img src='../images/darthMaul.png>");
+    }).append("<img src='assets/images/darthMaul.png' height='80%' width='80%'>")
+    .css({'text-align': 'center', 'padding': '20px 0 0'});
 
 
 $(document).ready(function () {
