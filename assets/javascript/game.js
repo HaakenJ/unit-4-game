@@ -72,17 +72,21 @@ $(document).ready(function () {
         yourCharacter = "",
         enemyId = "",
         yourId = "";
+    $("#restart-btn").hide();
     $("#obi-health").append(obiWan.healthPoints);
     $("#luke-health").append(lukeSkywalker.healthPoints);
     $("#sidious-health").append(darthSidious.healthPoints);
     $("#maul-health").append(darthMaul.healthPoints);
 
     $(".character-cards").on("click", function () {
+        // Check if a character has already been chosen.
         if (characterChosen === 0) {
+            // Assign character object to yourCharacter and get id.
             yourCharacter = getObjectFromId(this.id);
             yourId = this.id;
-            console.log(yourCharacter.name);
+            // Move card to #your-character location.
             $(this).appendTo($("#your-character"))
+            // Move all cards in this class that aren't 'this' to #enemies.
             $(".character-cards").not(this).each(function () {
                 $(this).appendTo($("#enemies"));
                 $(this).css({"float": "left", "background-color": "red", "border-color": "black"});
@@ -91,12 +95,15 @@ $(document).ready(function () {
             })
         }
         if (enemyChosen === 0) {
+            // Choose enemy
             $(".enemy").off().on("click", function () {
+                // Clear any attack text
+                $("#enemy-attack").text("");
+                $("#your-attack").text("");
+                // Assign current enemy object and id.
                 enemyCharacter = getObjectFromId(this.id);
                 enemyId = this.id;
-                console.log(enemyCharacter.name);
-                console.log("enemyId = " + enemyId);
-                console.log(typeof enemyId);
+                // Move enemy card to #current-fighter.
                 $(this).appendTo($("#current-fighter"));
                 $(this).css({"background-color": "black", "border-color": "green", "color": "white"})
                 enemyChosen = 1;
@@ -110,17 +117,47 @@ $(document).ready(function () {
             enemyCharacter.healthPoints -= yourCharacter.currentAttackPower;
             // Display enemy health
             $(returnHealthId(enemyId)).text(enemyCharacter.healthPoints);
-
-            // Notify of counterattack
-            $("#enemy-attack").text(`${enemyCharacter.name} attacked you back for \
-            ${enemyCharacter.counterAttackPower} damage.`);
-            // Lower your health
-            yourCharacter.healthPoints -= enemyCharacter.counterAttackPower;
-            // Display your health
-            $(returnHealthId(yourId)).text(yourCharacter.healthPoints);
-
             // Increase your attack power.
             yourCharacter.currentAttackPower += yourCharacter.baseAttackPower;
+
+            // Check if either enemy is out of health.
+            if (enemyCharacter.healthPoints <= 0) {
+                // Set health to 0 so it doesn't display negative.
+                enemyCharacter.healthPoints = 0;
+                $(returnHealthId(enemyId)).text(enemyCharacter.healthPoints);
+                // Hide the enemy card.
+                $("#" + enemyId).hide();
+                // Notify user of victory.
+                $("#enemy-attack").text("");
+                $("#your-attack").text(`You have defeated ${enemyCharacter.name}\
+                , you can choose to fight another enemy.`);
+            } 
+            // Only counterattack if enemy has health.
+            if (enemyCharacter.healthPoints > 0) {
+                // Notify of counterattack
+                $("#enemy-attack").text(`${enemyCharacter.name} attacked you back for \
+                ${enemyCharacter.counterAttackPower} damage.`);
+                // Lower your health
+                yourCharacter.healthPoints -= enemyCharacter.counterAttackPower;
+                // Display your health.
+                $(returnHealthId(yourId)).text(yourCharacter.healthPoints);
+
+
+            }
+
+            if (yourCharacter.healthPoints <= 0) {
+                // Set health to 0 so it doesn't display negative.
+                yourCharacter.healthPoints = 0;
+                $(returnHealthId(yourId)).text(yourCharacter.healthPoints);
+                // Hide the your card.
+                $("#" + yourId).hide();
+                // Notify user of defeat.
+                $("#enemy-attack").text("");
+                $("#your-attack").text("You have been defeated.  GAME OVER");
+                $("#restart-btn").show();
+            }
+
+            
         })
     });
 
