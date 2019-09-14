@@ -71,7 +71,8 @@ $(document).ready(function () {
         enemyCharacter = "",
         yourCharacter = "",
         enemyId = "",
-        yourId = "";
+        yourId = "",
+        numOfEnemies = 3;
     $("#restart-btn").hide();
     $("#obi-health").append(obiWan.healthPoints);
     $("#luke-health").append(lukeSkywalker.healthPoints);
@@ -131,6 +132,14 @@ $(document).ready(function () {
                 $("#enemy-attack").text("");
                 $("#your-attack").text(`You have defeated ${enemyCharacter.name}\
                 , you can choose to fight another enemy.`);
+                numOfEnemies--;
+                console.log('Enemies left: ' + numOfEnemies);
+                if (numOfEnemies === 0) {
+                    // Notify user of defeat.
+                    $("#enemy-attack").text("");
+                    $("#your-attack").text("You have defeated all the enemies!  You win!");
+                    $("#restart-btn").show();
+                }
             } 
             // Only counterattack if enemy has health.
             if (enemyCharacter.healthPoints > 0) {
@@ -156,6 +165,9 @@ $(document).ready(function () {
                 $("#your-attack").text("You have been defeated.  GAME OVER");
                 $("#restart-btn").show();
             }
+        $("#restart-btn").on("click", function () {
+            location.reload();
+        })
 
             
         })

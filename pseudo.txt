@@ -1,3 +1,26 @@
+TODO AND BUGS:
+
+- when the user loses, the game needs to end.  Currently the enemy stays on the screen and the attack button still works.
+
+- refreshing the page after both the enemy and the user have been defeated doesn't restart the game.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Game starts with four characters displayed at the top of the page.
 Their health is displayed below a picture of the characters
     each character has characteristics:
