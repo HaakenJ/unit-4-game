@@ -3,27 +3,27 @@ let obiWan = {
     healthPoints: 120,
     baseAttackPower: 8,
     currentAttackPower: 8,
-    counterAttackPower: 8,
+    counterAttackPower: 10,
 }
 let lukeSkywalker = {
     name: 'Luke Skywalker',
-    healthPoints: 100,
-    baseAttackPower: 6,
-    currentAttackPower: 6,
-    counterAttackPower: 5,
+    healthPoints: 110,
+    baseAttackPower: 9,
+    currentAttackPower: 9,
+    counterAttackPower: 9,
 }
 let darthSidious = {
     name: 'Darth Sidious',
-    healthPoints: 150,
-    baseAttackPower: 10,
-    currentAttackPower: 10,
+    healthPoints: 120,
+    baseAttackPower: 6,
+    currentAttackPower: 6,
     counterAttackPower: 20,
 }
 let darthMaul = {
     name: 'Darth Maul',
     healthPoints: 180,
-    baseAttackPower: 12,
-    currentAttackPower: 12,
+    baseAttackPower: 3,
+    currentAttackPower: 3,
     counterAttackPower: 25,
 }
 
@@ -111,16 +111,19 @@ $(document).ready(function () {
             });
         }
         $("#attack-button").off().on("click", function () {
-            // Notify of your attack
-            $("#your-attack").text(`You attacked ${enemyCharacter.name} for \
-            ${yourCharacter.currentAttackPower} damage.`);
-            // Lower enemy health
-            enemyCharacter.healthPoints -= yourCharacter.currentAttackPower;
-            // Display enemy health
-            $(returnHealthId(enemyId)).text(enemyCharacter.healthPoints);
-            // Increase your attack power.
-            yourCharacter.currentAttackPower += yourCharacter.baseAttackPower;
 
+            // Only attack if your character has health.
+            if (yourCharacter.healthPoints > 0) {
+                // Notify of your attack
+                $("#your-attack").text(`You attacked ${enemyCharacter.name} for \
+                ${yourCharacter.currentAttackPower} damage.`);
+                // Lower enemy health
+                enemyCharacter.healthPoints -= yourCharacter.currentAttackPower;
+                // Display enemy health
+                $(returnHealthId(enemyId)).text(enemyCharacter.healthPoints);
+                // Increase your attack power.
+                yourCharacter.currentAttackPower += yourCharacter.baseAttackPower;
+            }
             // Check if either enemy is out of health.
             if (enemyCharacter.healthPoints <= 0) {
                 // Set health to 0 so it doesn't display negative.
