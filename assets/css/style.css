@@ -33,11 +33,11 @@ body {
     left: 55px;
 }
 
-[id$="health"] {
+/* [id$="health"] {
     position: absolute;
     bottom: 0;
     left: 60px;
-}
+} */
 
 #enemies {
     float: left;
